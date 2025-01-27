@@ -1,29 +1,33 @@
 from flask import Flask,render_template
 app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "welcome to my webpage"
+
+@app.route("/findaddress")
 def findaddress():
     phone_number="09083456788"
     emailaddress="df@gmail.com"
     comp="4 Ojo road Ogba,Lagos"
-@app.route("/")
-def home():
-    return "welcome to my webpage"
+    return render_template('findaddress.html',phone_number=phone_number, emailaddress=emailaddress, comp=comp)
 
 @app.route("/vision")
 def vision():
     name="John"
     email="abc@nbc.com"
     contact="404-111-8888"
-    #return str(name),str(email),str(contact)
     return render_template('vision.html',name=name, email=email, contact=contact)
 
-
     
-@app.route("/aboutUs")
-def aboutUs():
-    phone_number,emailaddress,comp=findaddress()
-    return render_template('aboutUs.html',phoneno=phone_number, email=emailaddress, address=comp)
+@app.route("/about")
+def about():
+    history="Eko Cloud Services since incerption in 2019 has grown to become one of the leaders in IT cloud service provider in the Lagos metropolis"
+    leadership="Jack Jones (CEO), Mark Abc (CFO), Luke Ab (CTO)"
+    partners="We currently have the following industry partners: Google, Apple, Cisco, etc."
+    return render_template('about.html',history=history,leadership=leadership, partners=partners)
     
-    return str(phone_number),str(emailaddress),str(comp)
+    #return str(phone_number),str(emailaddress),str(comp)
 @app.route("/services")
 def services():
     service1="DevOps Cloud Development"
